@@ -28,3 +28,6 @@ config/secrets.yml
 
 # Ignore pre-compiled assets
 /public/assets
+
+# Ignore uploads
+/public/uploads

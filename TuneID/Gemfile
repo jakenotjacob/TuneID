@@ -10,9 +10,12 @@ group :assets do
   gem 'coffee-rails', '~> 4.0.0'
 end
 
+gem 'taglib-ruby', '~> 0.6.0'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+
+#Reading tags
+#gem 'taglib-ruby', '~> 0.6.0'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.14.1'

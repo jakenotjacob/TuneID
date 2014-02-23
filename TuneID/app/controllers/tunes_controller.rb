@@ -24,7 +24,7 @@ class TunesController < ApplicationController
   # POST /tunes
   # POST /tunes.json
   def create
-    @tune = Tune.new(tune_params)
+    @tune = Tune.new(parse_tune)
 
     respond_to do |format|
       if @tune.save
@@ -37,13 +37,26 @@ class TunesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tunes/1
-  # PATCH/PUT /tunes/1.json
+  def parse_tune
+    file = params[:tune][:uploaded_file]
+    extension = file.original_filename.split(".").last
+    file_path = Rails.root.join('public', 'uploads', "temp_tune.#{extension}")
+    File.open( file_path, 'wb') do |f|
+      f.write(file.read)
+    end
+    TagLib::FileRef.open( file_path.to_s ) do |t|
+      tag = t.tag
+      { artist: tag.artist, album: tag.album, title: tag.title }
+    end
+  end
+
+    # PATCH/PUT /tunes/1
+    # PATCH/PUT /tunes/1.json
   def update
     respond_to do |format|
       if @tune.update(tune_params)
         format.html { redirect_to @tune, notice: 'Tune was successfully updated.' }
-        format.json { head :no_content }
+        format.json { head :no_content } 
       else
         format.html { render action: 'edit' }
         format.json { render json: @tune.errors, status: :unprocessable_entity }
