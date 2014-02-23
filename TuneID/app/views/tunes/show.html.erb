@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= debug @tune %>
-
 <p>
   <strong>Artist:</strong>
   <%= @tune.artist %>
@@ -16,6 +14,8 @@
   <strong>Title:</strong>
   <%= @tune.title %>
 </p>
+
+<%= image_tag  @tune.album_cover %>
 
 <%= link_to 'Edit', edit_tune_path(@tune) %> |
 <%= link_to 'Back', tunes_path %>

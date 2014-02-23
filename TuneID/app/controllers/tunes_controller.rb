@@ -48,6 +48,8 @@ class TunesController < ApplicationController
       tag = t.tag
       { artist: tag.artist, album: tag.album, title: tag.title }
     end
+    #Cleanup file after use
+    #File.delete file_path
   end
 
     # PATCH/PUT /tunes/1

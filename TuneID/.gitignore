@@ -31,3 +31,6 @@ config/secrets.yml
 
 # Ignore uploads
 /public/uploads
+
+# Ignore Last.fm API key
+/lib/api_key.txt
